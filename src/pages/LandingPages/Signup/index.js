@@ -56,25 +56,29 @@ function SignUpBasic() {
       password,
     },
   }; */
+  // eslint-disable-next-line no-console, no-unused-vars
+  const data = {
+    firstName,
+    lastName,
+    phoneNumber,
+    email,
+    password,
+  };
+  console.log(email, phoneNumber, password);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const url = "http://localhost:8000/api/users/signup";
-      const { data: res } = await axios.post(
-        url,
-        firstName,
-        lastName,
-        phoneNumber,
-        email,
-        password
-      );
+      const { data: res } = await axios.post(url, data);
       // eslint-disable-next-line no-console
       console.log("data", res);
       // eslint-disable-next-line no-console
       console.log(res);
     } catch (error) {
-      // eslint-disable-next-line no-unused-expressions
-      error;
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        // eslint-disable-next-line no-undef
+        setError(error.response.data.message);
+      }
     }
   };
 
