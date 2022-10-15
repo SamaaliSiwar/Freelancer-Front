@@ -40,29 +40,42 @@ import axios from "axios";
 // import { useDispatch } from "react-redux";
 
 function SignUpBasic() {
-  const [setName] = useState("");
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [phoneNumber, setphoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [setConfirmPassword] = useState("");
-  const configuration = {
+  /* const configuration = {
     method: "post",
     url: "http://localhost:8000/api/users/signup",
     data: {
+      firstName,
+      lastName,
+      phoneNumber,
       email,
       password,
     },
-  };
-  const submitHandler = (e) => {
+  }; */
+  const submitHandler = async (e) => {
     e.preventDefault();
-    axios(configuration)
-      .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
+    try {
+      const url = "http://localhost:8000/api/users/signup";
+      const { data: res } = await axios.post(
+        url,
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        password
+      );
+      // eslint-disable-next-line no-console
+      console.log("data", res);
+      // eslint-disable-next-line no-console
+      console.log(res);
+    } catch (error) {
+      // eslint-disable-next-line no-unused-expressions
+      error;
+    }
   };
 
   // const dispatch = useDispatch();
@@ -124,18 +137,32 @@ function SignUpBasic() {
                     <MKInput
                       type="text"
                       label="Text"
-                      onChange={(e) => setName(e.target.value)}
+                      onChange={(e) => setfirstName(e.target.value)}
                       fullWidth
                     />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="Phone" label="Tel:+216" fullWidth />
+                    <MKInput
+                      type="text"
+                      label="Text"
+                      onChange={(e) => setlastName(e.target.value)}
+                      fullWidth
+                    />
+                  </MKBox>
+
+                  <MKBox mb={2}>
+                    <MKInput
+                      type="Email"
+                      label="Email"
+                      onChange={(e) => setEmail(e.target.value)}
+                      fullWidth
+                    />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput
                       type="Phone"
-                      label="Email"
-                      onChange={(e) => setEmail(e.target.value)}
+                      label="Tel:+216"
+                      onChange={(e) => setphoneNumber(e.target.value)}
                       fullWidth
                     />
                   </MKBox>
@@ -145,14 +172,6 @@ function SignUpBasic() {
                       label="Password"
                       fullWidth
                       onChange={(e) => setPassword(e.target.value)}
-                    />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput
-                      type="password"
-                      label="Password"
-                      fullWidth
-                      onChange={(e) => setConfirmPassword(e.target.value)}
                     />
                   </MKBox>
                   <MKBox mt={4} mb={1}>
