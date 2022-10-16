@@ -64,14 +64,13 @@ function SignUpBasic() {
     email,
     password,
   };
-  console.log(email, phoneNumber, password);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
       const url = "http://localhost:8000/api/users/signup";
       const { data: res } = await axios.post(url, data);
-      // eslint-disable-next-line no-console
-      console.log("data", res);
+      // eslint-disable-next-line no-alert
+      alert("um message d'activation de compte est envoyées à votre mail");
       // eslint-disable-next-line no-console
       console.log(res);
     } catch (error) {

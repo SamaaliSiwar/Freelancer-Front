@@ -48,6 +48,7 @@ import ContactUs from "layouts/pages/landing-pages/contact-us";
 import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import ActiveUser from "pages/LandingPages/ActiveUser";
 
 // Sections
 const routes = [
@@ -72,7 +73,7 @@ const routes = [
           },
           {
             name: "author",
-            route: "/pages/landing-pages/author",
+            route: "/pages/landing-pages/author/:id",
             component: <Author />,
           },
         ],
@@ -84,6 +85,16 @@ const routes = [
             name: "sign in",
             route: "/pages/authentication/sign-in",
             component: <SignIn />,
+          },
+        ],
+      },
+      {
+        name: "active account",
+        collapse: [
+          {
+            name: "sign in",
+            route: "/users/confirm/:token",
+            component: <ActiveUser />,
           },
         ],
       },

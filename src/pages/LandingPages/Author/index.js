@@ -34,6 +34,7 @@ import routes from "routes";
 import bgImage from "assets/images/city-profile.jpg";
 
 function Author() {
+  // eslint-disable-next-line react/prop-types
   return (
     <>
       <DefaultNavbar

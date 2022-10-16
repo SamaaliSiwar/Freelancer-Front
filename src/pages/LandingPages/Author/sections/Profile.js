@@ -25,8 +25,26 @@ import MKAvatar from "components/MKAvatar";
 // Images
 import profilePicture from "assets/images/bruce-mars.jpg";
 import MKTypography from "components/MKTypography";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function Profile() {
+  const { id } = useParams();
+  useEffect(() => {
+    try {
+      const url = "http://localhost:8000/api/users/:id";
+
+      const { data: res } = axios.get(url, id);
+      // eslint-disable-next-line no-console
+      console.log(res);
+    } catch (error) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        // eslint-disable-next-line no-undef
+        setError(error.response.data.message);
+      }
+    }
+  });
   return (
     <MKBox component="section" py={{ xs: 6, sm: 12 }}>
       <Container>

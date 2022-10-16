@@ -22,49 +22,58 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React example components
-import SimpleFooter from "examples/Footers/SimpleFooter";
 
 // Material Kit 2 React page layout routes
-import routes from "routes";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import "./index.css";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import axios from "axios";
-import { useState } from "react";
+import react from "react";
+import routes from "routes";
+import { useNavigate } from "react-router-dom";
 
 function SignInBasic() {
-  //   onChange  (e)={
-  //   console.log('ee', e)
-  //  }
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const configuration = {
-    method: "post",
-    url: "http://localhost:8000/api/users/signin",
-    data: {
-      email,
-      password,
-    },
+  const [email, setEmail] = react.useState("");
+  const [password, setPassword] = react.useState("");
+  const navigate = useNavigate();
+  const data = {
+    email,
+    password,
   };
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
-    axios(configuration)
-      .then((result) => {
-        // eslint-disable-next-line no-console
-        console.log(result);
-      })
-      .catch((error) => {
-        // eslint-disable-next-line no-console
-        console.log(error);
-      });
+    try {
+      const url = "http://localhost:8000/api/users/signin";
+      const { data: res } = await axios.post(url, data);
+      // eslint-disable-next-line no-template-curly-in-string, no-underscore-dangle
+      navigate(`/pages/landing-pages/author/${res._id}`);
+
+      // eslint-disable-next-line no-alert
+      // eslint-disable-next-line no-console
+      console.log(res);
+
+      localStorage.setItem("userInfo", JSON.stringify(res));
+      // eslint-disable-next-line no-undef
+
+      // eslint-disable-next-line no-console
+    } catch (error) {
+      if (error.response && error.response.status >= 400 && error.response.status <= 500) {
+        // eslint-disable-next-line no-undef
+        setError(error.response.data.message);
+      }
+    }
   };
+
+  // const dispatch = useDispatch();
+  // eslint-disable-next-line no-shadow
+
   return (
     <>
       <DefaultNavbar
+        // eslint-disable-next-line no-undef
         routes={routes}
         action={{
           type: "external",
@@ -109,14 +118,14 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Sign in
+                  Sign In
                 </MKTypography>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form" onSubmit={submitHandler}>
                   <MKBox mb={2}>
                     <MKInput
-                      type="email"
+                      type="Email"
                       label="Email"
                       onChange={(e) => setEmail(e.target.value)}
                       fullWidth
@@ -126,18 +135,18 @@ function SignInBasic() {
                     <MKInput
                       type="password"
                       label="Password"
-                      onChange={(e) => setPassword(e.target.value)}
                       fullWidth
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </MKBox>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" type="submit" fullWidth>
-                      Log In
+                      sign In
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
-                      Don&apos;t have an account?{" "}
+                      vous avez déja un compte?{" "}
                       <MKTypography
                         to="/authentication/sign-up/cover"
                         variant="button"
@@ -154,9 +163,6 @@ function SignInBasic() {
             </Card>
           </Grid>
         </Grid>
-      </MKBox>
-      <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
-        <SimpleFooter light />
       </MKBox>
     </>
   );
