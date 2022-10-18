@@ -9,44 +9,62 @@ import Typography from "@mui/material/Typography";
 import { red } from "@mui/material/colors";
 
 import { Grid } from "@mui/material";
-import data from "../../../data";
+import "./index.css";
+import axios from "axios";
 
 export default function RecipeReviewCard() {
+  const url = "http://localhost:8000/api/post/";
+  let resp = "";
+  const getData = async () => {
+    await axios.get(url).then((data) => {
+      resp = data.data;
+      // eslint-disable-next-line no-console
+      console.log(resp);
+    });
+  };
+  React.useEffect(() => {
+    getData();
+  }, []);
+  // eslint-disable-next-line no-alert
+  // eslint-disable-next-line no-console
+
+  // eslint-disable-next-line no-undef
+
   return (
     <Grid
       container
       spacing={{ xs: 2, md: 3 }}
-      style={{ marginTop: 30 }}
+      style={{ marginTop: 45 }}
       columns={{ xs: 4, sm: 8, md: 12 }}
+      className="grid"
     >
-      {data.offers.map((offer) => (
-        // eslint-disable-next-line no-undef
-        <Card sx={{ maxWidth: 345 }} className="container">
-          <CardMedia component="img" height="194" image={offer.img} alt="Paella dish" />
-          <CardContent>
-            <Typography variant="body2" color="text.secondary">
-              {offer.title}
-            </Typography>
-            <Grid container item xs={12} justifyContent="center" mx="auto">
-              <CardHeader
-                // eslint-disable-next-line no-undef
-                avatar={
-                  <Avatar
-                    sx={{ bgcolor: red[500] }}
-                    // eslint-disable-next-line no-undef
-                    aria-label="recipe"
-                  >
-                    R
-                  </Avatar>
-                }
-              />
-              <Grid container item xs={12} justifyContent="center" mx="auto">
-                <Typography>Pulish Name</Typography>
-              </Grid>
-            </Grid>
-          </CardContent>
-        </Card>
-      ))}
+      {resp &&
+        resp.data.map((offer) => (
+          // eslint-disable-next-line no-undef
+          <Card key={resp.id} sx={{ maxWidth: 345 }} className="container">
+            <CardHeader
+              // eslint-disable-next-line no-undef
+              avatar={
+                <Avatar
+                  sx={{ bgcolor: red[500] }}
+                  // eslint-disable-next-line no-undef
+                  aria-label="recipe"
+                >
+                  R
+                </Avatar>
+              }
+              title="client name"
+            />
+            <CardMedia component="img" height="194" image={offer.img} alt="Paella dish" />
+            <CardContent>
+              <Typography variant="body2" color="text.secondary">
+                {" "}
+                {offer.userId}
+              </Typography>
+              <Grid container item xs={12} justifyContent="center" mx="auto" />
+            </CardContent>
+          </Card>
+        ))}
     </Grid>
   );
 }

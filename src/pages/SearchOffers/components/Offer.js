@@ -2,10 +2,11 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 
 import Button from "react-bootstrap/Button";
-
-import data from "../../../data";
+import axios from "axios";
 
 export default function Offer() {
+  const { data } = axios.get(`/api/post/`);
+
   return (
     <>
       {data.offers.map((offer) => (

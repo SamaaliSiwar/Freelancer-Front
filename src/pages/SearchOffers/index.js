@@ -17,12 +17,15 @@ Coded by www.creative-tim.com
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import SearchIcon from "@mui/icons-material/Search";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
-import Button from "react-bootstrap/Button";
-import ButtonGroup from "react-bootstrap/ButtonGroup";
+// import SearchIcon from "@mui/icons-material/Search";
+// import { styled, alpha } from "@mui/material/styles";
+// import InputBase from "@mui/material/InputBase";
 
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
@@ -38,44 +41,7 @@ import RecipeReviewCard from "./components/OfferCard";
 
 // Images
 function Offres() {
-  const Search = styled("div")(({ theme }) => ({
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  }));
-
-  const SearchIconWrapper = styled("div")(({ theme }) => ({
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }));
-  const StyledInputBase = styled(InputBase)(({ theme }) => ({
-    color: "inherit",
-    "& .MuiInputBase-input": {
-      padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
-      width: "100%",
-      [theme.breakpoints.up("md")]: {
-        width: "20ch",
-      },
-    },
-  }));
+  // eslint-disable-next-line no-undef, no-unused-vars
   return (
     <>
       <MKBox
@@ -128,19 +94,40 @@ function Offres() {
         }}
       >
         {" "}
-        <Search>
+        {/* <Search>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
-        </Search>
-        <ButtonGroup size="lg" className="mb-2">
-          <Button variant="secondary">Web Development</Button>
-          <Button variant="secondary">Web Disgne</Button>
-          <Button variant="secondary">garphique Disgne</Button>
-          <Button variant="secondary">Traduction</Button>
-          <Button variant="secondary">Education</Button>
-        </ButtonGroup>
+        </Search> */}
+        <Navbar expand="lg">
+          <Container fluid>
+            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Collapse id="navbarScroll">
+              <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
+                <NavDropdown title="Categories" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">Offers</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Freelencers Posts</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                </NavDropdown>
+                <NavDropdown title="Price" id="navbarScrollingDropdown">
+                  <NavDropdown.Item href="#action3">Croissant</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">Décroissant</NavDropdown.Item>
+                </NavDropdown>
+              </Nav>
+              <Form className="d-flex">
+                <Form.Control
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
         <RecipeReviewCard />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
