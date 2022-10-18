@@ -26,7 +26,7 @@ import MKAvatar from "components/MKAvatar";
 import profilePicture from "assets/images/bruce-mars.jpg";
 import MKTypography from "components/MKTypography";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 
 function Profile() {
