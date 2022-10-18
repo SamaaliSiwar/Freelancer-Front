@@ -19,10 +19,10 @@
   },
   "dependencies": {
     "@emotion/cache": "11.4.0",
-    "@emotion/react": "11.4.1",
-    "@emotion/styled": "11.3.0",
-    "@mui/icons-material": "5.2.0",
-    "@mui/material": "5.2.0",
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.9",
     "@mui/styled-engine": "5.2.0",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.1.0",
@@ -39,6 +39,7 @@
     "react-copy-to-clipboard": "5.0.4",
     "react-countup": "6.1.0",
     "react-dom": "17.0.2",
+    "react-elastic-carousel": "^0.11.5",
     "react-flatpickr": "3.10.7",
     "react-router-dom": "6.0.2",
     "react-scripts": "4.0.3",
@@ -80,6 +81,5 @@
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
     "prettier": "2.3.2"
-  },
-  "proxy": "http://localhost:8000/api"
+  }
 }

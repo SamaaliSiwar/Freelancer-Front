@@ -49,6 +49,7 @@ import Author from "layouts/pages/landing-pages/author";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 import ActiveUser from "pages/LandingPages/ActiveUser";
+import Offres from "pages/SearchOffers";
 
 // Sections
 const routes = [
@@ -85,6 +86,16 @@ const routes = [
             name: "sign in",
             route: "/pages/authentication/sign-in",
             component: <SignIn />,
+          },
+        ],
+      },
+      {
+        name: "account",
+        collapse: [
+          {
+            name: "all Offres",
+            route: "/offers",
+            component: <Offres />,
           },
         ],
       },
