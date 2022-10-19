@@ -28,7 +28,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 function DefaultFooter({ content }) {
-  const { brand, socials, menus, copyright } = content;
+  const { brand, socials, menus } = content;
 
   return (
     <MKBox component="footer">
@@ -39,7 +39,7 @@ function DefaultFooter({ content }) {
               <Link to={brand.route}>
                 <MKBox component="img" src={brand.image} alt={brand.name} maxWidth="2rem" mb={2} />
               </Link>
-              <MKTypography variant="h6">{brand.name}</MKTypography>
+              {/* <MKTypography variant="h6">{brand.name}</MKTypography> */}
             </MKBox>
             <MKBox display="flex" alignItems="center" mt={3}>
               {socials.map(({ icon, link }, key) => (
@@ -101,9 +101,9 @@ function DefaultFooter({ content }) {
               </MKBox>
             </Grid>
           ))}
-          <Grid item xs={12} sx={{ textAlign: "center", my: 3 }}>
+          {/* <Grid item xs={12} sx={{ textAlign: "center", my: 3 }}>
             {copyright}
-          </Grid>
+          </Grid> */}
         </Grid>
       </Container>
     </MKBox>

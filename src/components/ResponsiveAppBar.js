@@ -127,19 +127,19 @@ const ResponsiveAppBar = () => {
                 Accuiel
               </Button>
             </Link>
-            <Link to="pages/landing-pages/about-us">
+            <Link to="about-us">
               {" "}
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 About
               </Button>
             </Link>
-            <Link to="pages/SearchOffers/components">
+            <Link to="offers">
               {" "}
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 Offres
               </Button>
             </Link>
-            <Link to="pages/landing-pages/contact-us">
+            <Link to="contact-us">
               {" "}
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 Contact
@@ -178,7 +178,7 @@ const ResponsiveAppBar = () => {
               </Menu>
             </Box>
           ) : (
-            <Link to="pages/authentication/sign-in">
+            <Link to="sign-in">
               {" "}
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 <Typography textAlign="center">

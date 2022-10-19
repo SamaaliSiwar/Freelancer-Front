@@ -64,17 +64,17 @@ const routes = [
         collapse: [
           {
             name: "about us",
-            route: "/pages/landing-pages/about-us",
+            route: "about-us",
             component: <AboutUs />,
           },
           {
             name: "contact us",
-            route: "/pages/landing-pages/contact-us",
+            route: "contact-us",
             component: <ContactUs />,
           },
           {
             name: "author",
-            route: "/pages/landing-pages/author/:id",
+            route: "author/:id",
             component: <Author />,
           },
         ],
@@ -84,7 +84,7 @@ const routes = [
         collapse: [
           {
             name: "sign in",
-            route: "/pages/authentication/sign-in",
+            route: "sign-in",
             component: <SignIn />,
           },
         ],
