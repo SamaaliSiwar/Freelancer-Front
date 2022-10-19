@@ -54,7 +54,7 @@ function SignInBasic() {
       // eslint-disable-next-line no-alert
       // eslint-disable-next-line no-console
       console.log(res);
-
+      localStorage.sertItem("userInfo");
       localStorage.setItem("userInfo", JSON.stringify(res));
       // eslint-disable-next-line no-undef
 
@@ -147,13 +147,7 @@ function SignInBasic() {
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       vous avez déja un compte?{" "}
-                      <MKTypography
-                        to="/authentication/sign-up/cover"
-                        variant="button"
-                        color="info"
-                        fontWeight="medium"
-                        textGradient
-                      >
+                      <MKTypography variant="button" color="info" fontWeight="medium" textGradient>
                         Sign up
                       </MKTypography>
                     </MKTypography>

@@ -10,21 +10,23 @@ import { red } from "@mui/material/colors";
 
 import { Grid } from "@mui/material";
 import "./index.css";
-import axios from "axios";
 
 export default function RecipeReviewCard() {
-  const url = "http://localhost:8000/api/post/";
-  let resp = "";
-  const getData = async () => {
-    await axios.get(url).then((data) => {
-      resp = data.data;
-      // eslint-disable-next-line no-console
-      console.log(resp);
-    });
-  };
-  React.useEffect(() => {
-    getData();
-  }, []);
+  // const url = "http://localhost:8000/api/post/";
+  // let resp = "";
+  // const getData = async () => {
+  //   await axios.get(url).then((data) => {
+  //     resp = data.data;
+  //     // eslint-disable-next-line no-console
+  //     console.log(resp.data);
+  //   });
+  // };
+  // useEffect(async () => {
+  //   const url = "http://localhost:8000/api/post/";
+  //   const response =  await get.(url);
+  //   const data = await response.json();
+  //   console.log(data)
+  // });
   // eslint-disable-next-line no-alert
   // eslint-disable-next-line no-console
 
