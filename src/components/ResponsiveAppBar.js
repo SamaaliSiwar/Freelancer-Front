@@ -13,20 +13,21 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { Link } from "react-router-dom";
-import initialState from "satets";
+// import initialState from "satets";
 import LoginIcon from "@mui/icons-material/Login";
 // eslint-disable-next-line import/no-unresolved
-// const pages = ["Products", "Pricing", "Blog"];
-const signoutHandler = () => {
-  localStorage.removeItem("userInfo");
-};
-
+// const pages = ["Products", "Pricing", "Blog"]
 const ResponsiveAppBar = () => {
-  const detailsuser = React.useState(initialState.userSignin);
-  const user = detailsuser[0].userInfo;
+  // const detailsuser = React.useState(`userInfo`);
+  const detailsuser = JSON.parse(localStorage.getItem("userInfo"));
+
+  // eslint-disable-next-line no-console
+  console.log(detailsuser);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
+  const signoutHandler = () => {
+    localStorage.removeItem("userInfo");
+  };
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -146,7 +147,7 @@ const ResponsiveAppBar = () => {
               </Button>
             </Link>
           </Box>
-          {user ? (
+          {detailsuser ? (
             <Box sx={{ flexGrow: 0 }}>
               <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
