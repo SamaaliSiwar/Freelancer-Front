@@ -13,7 +13,6 @@ import "./index.css";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-
 export default function RecipeReviewCard() {
 
   const [offer,setOffer]=useState();

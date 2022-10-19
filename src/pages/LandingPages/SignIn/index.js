@@ -32,9 +32,7 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 import axios from "axios";
 import react from "react";
-import routes from "routes";
-import { useNavigate } from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 function SignInBasic() {
   const [email, setEmail] = react.useState("");
   const [password, setPassword] = react.useState("");
@@ -67,25 +65,14 @@ function SignInBasic() {
 
   return (
     <>
-      <DefaultNavbar
-        // eslint-disable-next-line no-undef
-        routes={routes}
-        action={{
-          type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
-          color: "info",
-        }}
-        transparent
-        light
-      />
-      <MKBox
+       <MKBox
         position="absolute"
         top={0}
         left={0}
         zIndex={1}
         width="100%"
         minHeight="100vh"
+        marginTop= "6%"
         sx={{
           backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
             `${linearGradient(
@@ -142,9 +129,11 @@ function SignInBasic() {
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       vous avez déja un compte?{" "}
+                     
                       <MKTypography variant="button" color="info" fontWeight="medium" textGradient>
-                        Sign up
+                      <Link to="/sign-up" >Sign up  </Link>
                       </MKTypography>
+                    
                     </MKTypography>
                   </MKBox>
                 </MKBox>

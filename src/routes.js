@@ -114,7 +114,7 @@ const routes = [
         collapse: [
           {
             name: "sign up",
-            route: "/pages/authentication/sign-up",
+            route: "/sign-up",
             component: <SignUp />,
           },
         ],

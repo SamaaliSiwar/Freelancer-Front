@@ -37,6 +37,7 @@ import MKButton from "components/MKButton";
 import MKInput from "components/MKInput";
 import { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 
 function SignUpBasic() {
@@ -86,17 +87,6 @@ function SignUpBasic() {
 
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
-          color: "info",
-        }}
-        transparent
-        light
-      />
       <MKBox
         position="absolute"
         top={0}
@@ -104,6 +94,7 @@ function SignUpBasic() {
         zIndex={1}
         width="100%"
         minHeight="100vh"
+        marginTop= "6%"
         sx={{
           backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
             `${linearGradient(
@@ -139,7 +130,7 @@ function SignUpBasic() {
                   <MKBox mb={2}>
                     <MKInput
                       type="text"
-                      label="Text"
+                      label="First name"
                       onChange={(e) => setfirstName(e.target.value)}
                       fullWidth
                     />
@@ -147,7 +138,7 @@ function SignUpBasic() {
                   <MKBox mb={2}>
                     <MKInput
                       type="text"
-                      label="Text"
+                      label="Last name"
                       onChange={(e) => setlastName(e.target.value)}
                       fullWidth
                     />
@@ -185,6 +176,7 @@ function SignUpBasic() {
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       vous avez déja un compte?{" "}
+                      <Link to="/sign-in">
                       <MKTypography
                         to="/authentication/sign-up/cover"
                         variant="button"
@@ -192,8 +184,9 @@ function SignUpBasic() {
                         fontWeight="medium"
                         textGradient
                       >
-                        Sign up
+                        Sign in
                       </MKTypography>
+                      </Link>
                     </MKTypography>
                   </MKBox>
                 </MKBox>
