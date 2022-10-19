@@ -133,7 +133,7 @@ const ResponsiveAppBar = () => {
                 About
               </Button>
             </Link>
-            <Link to="pages/landing-pages/about-us">
+            <Link to="pages/SearchOffers/components">
               {" "}
               <Button onClick={handleCloseNavMenu} sx={{ my: 2, color: "white", display: "block" }}>
                 Offres
