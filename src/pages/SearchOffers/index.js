@@ -37,10 +37,17 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Routes
 import footerRoutes from "footer.routes";
-import RecipeReviewCard from "./components/OfferCard";
+// eslint-disable-next-line import/no-named-as-default
+// import RecipeReviewCard from "./components/OfferCard";
+import axios from "axios";
 
 // Images
 function Offres() {
+  const response = axios.get("http://localhost:8000/api/post/").json();
+  const data = response.json();
+  // eslint-disable-next-line no-console
+  console.log(data);
+
   // eslint-disable-next-line no-undef, no-unused-vars
   return (
     <>
@@ -128,7 +135,41 @@ function Offres() {
             </Navbar.Collapse>
           </Container>
         </Navbar>
-        <RecipeReviewCard />
+        <Grid
+          container
+          spacing={{ xs: 2, md: 3 }}
+          style={{ marginTop: 45 }}
+          columns={{ xs: 4, sm: 8, md: 12 }}
+          className="grid"
+        >
+          {/* {resp &&
+            resp.data.map((offer) => (
+              // eslint-disable-next-line no-undef
+              <Card key={resp.id} sx={{ maxWidth: 345 }} className="container">
+                <CardHeader
+                  // eslint-disable-next-line no-undef
+                  avatar={
+                    <Avatar
+                      sx={{ bgcolor: red[500] }}
+                      // eslint-disable-next-line no-undef
+                      aria-label="recipe"
+                    >
+                      R
+                    </Avatar>
+                  }
+                  title="client name"
+                />
+                <CardMedia component="img" height="194" image={offer.img} alt="Paella dish" />
+                <CardContent>
+                  <Typography variant="body2" color="text.secondary">
+                    {" "}
+                    {offer.userId}
+                  </Typography>
+                  <Grid container item xs={12} justifyContent="center" mx="auto" />
+                </CardContent>
+              </Card>
+            ))} */}
+        </Grid>
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
