@@ -40,15 +40,21 @@ import footerRoutes from "footer.routes";
 // eslint-disable-next-line import/no-named-as-default
 // import RecipeReviewCard from "./components/OfferCard";
 import axios from "axios";
+import RecipeReviewCard from "./components/OfferCard";
+import { useEffect, useState } from "react";
+import { Avatar, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
 
 // Images
 function Offres() {
-  const response = axios.get("http://localhost:8000/api/post/").json();
-  const data = response.json();
-  // eslint-disable-next-line no-console
-  console.log(data);
+  const [offer,setOffer]=useState();
+  useEffect(async () => {
+    const url = "http://localhost:8000/api/post/";
+    const response = await axios.get(url);
+    setOffer(response.data);
+  },[]);
+  console.log(offer);
 
-  // eslint-disable-next-line no-undef, no-unused-vars
+
   return (
     <>
       <MKBox
@@ -84,7 +90,8 @@ function Offres() {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Travailler en freelance est un avantage qui attire de plus en plus de monde.
+              Travailler en freelance est un avantage qui attire de plus en plus
+              de monde.
             </MKTypography>
           </Grid>
         </Container>
@@ -95,7 +102,8 @@ function Offres() {
           mx: { xs: 2, lg: 3 },
           mt: -8,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) =>
+            rgba(white.main, 0.8),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
@@ -111,16 +119,26 @@ function Offres() {
           <Container fluid>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
-              <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
+              <Nav
+                className="me-auto my-2 my-lg-0"
+                style={{ maxHeight: "100px" }}
+                navbarScroll
+              >
                 <NavDropdown title="Categories" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">Offers</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Freelencers Posts</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
+                    Freelencers Posts
+                  </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">Something else here</NavDropdown.Item>
+                  <NavDropdown.Item href="#action5">
+                    Something else here
+                  </NavDropdown.Item>
                 </NavDropdown>
                 <NavDropdown title="Price" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">Croissant</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">Décroissant</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
+                    Décroissant
+                  </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
               <Form className="d-flex">
@@ -136,40 +154,45 @@ function Offres() {
           </Container>
         </Navbar>
         <Grid
+      container
+      spacing={{ xs: 2, md: 3 }}
+      style={{ marginTop: 45 }}
+      columns={{ xs: 4, sm: 8, md: 12 }}
+      className="grid"
+    >
+        {offer ? offer.map((offer) => (
+          <Card sx={{ maxWidth: 345 }} className="container">
+          <CardHeader
+            // eslint-disable-next-line no-undef
+            avatar={
+              <Avatar
+                // eslint-disable-next-line no-undef
+                aria-label="recipe"
+              >
+                R
+              </Avatar>
+            }
+            title="client name"
+          />
+          <CardMedia component="img" height="194" image={offer.img} alt="Paella dish" />
+          <CardContent>
+            <Typography variant="body2" color="text.secondary">
+              {" "}
+              {offer.userId}
+            </Typography>
+            <Grid container item xs={12} justifyContent="center" mx="auto" />
+          </CardContent>
+        </Card>
+         )):null}
+         </Grid>
+        <Grid
           container
           spacing={{ xs: 2, md: 3 }}
           style={{ marginTop: 45 }}
           columns={{ xs: 4, sm: 8, md: 12 }}
           className="grid"
-        >
-          {/* {resp &&
-            resp.data.map((offer) => (
-              // eslint-disable-next-line no-undef
-              <Card key={resp.id} sx={{ maxWidth: 345 }} className="container">
-                <CardHeader
-                  // eslint-disable-next-line no-undef
-                  avatar={
-                    <Avatar
-                      sx={{ bgcolor: red[500] }}
-                      // eslint-disable-next-line no-undef
-                      aria-label="recipe"
-                    >
-                      R
-                    </Avatar>
-                  }
-                  title="client name"
-                />
-                <CardMedia component="img" height="194" image={offer.img} alt="Paella dish" />
-                <CardContent>
-                  <Typography variant="body2" color="text.secondary">
-                    {" "}
-                    {offer.userId}
-                  </Typography>
-                  <Grid container item xs={12} justifyContent="center" mx="auto" />
-                </CardContent>
-              </Card>
-            ))} */}
-        </Grid>
+        />
+
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />

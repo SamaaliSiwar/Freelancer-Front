@@ -47,18 +47,13 @@ function SignInBasic() {
     e.preventDefault();
     try {
       const url = "http://localhost:8000/api/users/signin";
-      const { data: res } = await axios.post(url, data);
-      // eslint-disable-next-line no-template-curly-in-string, no-underscore-dangle
-      navigate(`/pages/landing-pages/author/${res._id}`);
-
-      // eslint-disable-next-line no-alert
-      // eslint-disable-next-line no-console
-      console.log(res);
-      localStorage.sertItem("userInfo");
-      localStorage.setItem("userInfo", JSON.stringify(res));
-      // eslint-disable-next-line no-undef
-
-      // eslint-disable-next-line no-console
+      await axios.post(url, data).then((res) => {
+        // eslint-disable-next-line no-console
+        localStorage.setItem("userInfo", JSON.stringify(res.data));
+        console.log(res.data);
+        // eslint-disable-next-line no-underscore-dangle
+        navigate(`/pages/landing-pages/author/${res.data._id}`);
+      });
     } catch (error) {
       if (error.response && error.response.status >= 400 && error.response.status <= 500) {
         // eslint-disable-next-line no-undef
